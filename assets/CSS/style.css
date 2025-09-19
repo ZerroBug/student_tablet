@@ -1,0 +1,65 @@
+/* Basic theme — tweak to your school colors */
+:root{
+  --primary:#1d3557;
+  --primary-2:#457b9d;
+  --accent:#2a9d8f;
+  --warning:#e9c46a;
+  --danger:#e76f51;
+  --bg:#f8f9fa;
+}
+html,body{height:100%}
+body{background:var(--bg)}
+.sidebar{
+  min-height:100vh; background:var(--primary); color:#1d3557;
+}
+.sidebar .brand{font-weight:700}
+.sidebar .nav-link{color:#fff; padding:.6rem .75rem; border-radius:.5rem}
+.sidebar .nav-link:hover,.sidebar .nav-link.active{background:var(--primary-2)}
+.topbar{background:#fff; border-bottom:1px solid #e9ecef}
+.card-stat{border-left:6px solid var(--primary-2)}
+.table thead th{white-space:nowrap}
+.badge-status-available{background:var(--accent)}
+.badge-status-issued{background:var(--warning); color:#000}
+.badge-status-repair{background:var(--danger)}
+/* Utilities */
+.cursor-pointer{cursor:pointer}
+/* Footer styling */
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 230px; /* same width as sidebar */
+    width: calc(100% - 230px);
+    background-color: #1d3557;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    z-index: 1030;
+}
+
+@media (max-width: 768px) {
+    .footer {
+        left: 0;
+        width: 100%;
+    }
+}
+
+
+/* Footer styling */
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 230px; /* same width as sidebar */
+    width: calc(100% - 230px);
+    background-color: #1d3557;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    z-index: 1030;
+}
+
+@media (max-width: 768px) {
+    .footer {
+        left: 0;
+        width: 100%;
+    }
+}
