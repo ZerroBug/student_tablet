@@ -2,7 +2,7 @@
 // Database connection
 $host = 'localhost';
 $dbname = 'u421860731_tablet_db';
-$username = 'u421860731_oashs';
+$username = 'root';
 $password = '';
 
 try {
