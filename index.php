@@ -104,14 +104,14 @@
 
             <div class="mb-3 text-start">
                 <label class="form-label">
-                    <i class="fa-solid fa-user me-1"></i> Email
+                    <!-- <i class="fa-solid fa-user me-1"></i> Email -->
                 </label>
                 <input type="email" name="email" class="form-control" placeholder="Enter your email" required>
             </div>
 
             <div class="mb-3 text-start">
                 <label class="form-label">
-                    <i class="fa-solid fa-lock me-1"></i> Password
+                    <!-- <i class="fa-solid fa-lock me-1"></i> Password -->
                 </label>
                 <input type="password" name="password" class="form-control" placeholder="Enter your password" required>
             </div>
