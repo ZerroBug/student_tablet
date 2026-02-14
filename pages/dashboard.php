@@ -42,148 +42,166 @@ foreach ($classes as $cls) {
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+    /* =========================
+   GLOBAL STYLES
+========================= */
+
     body {
-        font-family: "Poppins", sans-serif;
-        background: #eef2f7;
-        overflow-x: hidden;
-    }
-
-    /* Sidebar (UNCHANGED) */
-    .sidebar {
-        height: 100vh;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 250px;
-        background: linear-gradient(180deg, #1d3557, #2a4964);
-        padding-top: 1rem;
-        z-index: 1040;
-        box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
-    }
-
-    .sidebar h4 {
-        font-size: 1.3rem;
-        font-weight: 600;
-        color: #fff;
-        padding-left: 20px;
-        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
-    }
-
-    .sidebar a {
-        color: white;
-        text-decoration: none;
-        display: block;
-        padding: 12px 20px;
-        margin-bottom: 4px;
-        border-radius: 8px;
-        font-size: 1rem;
-        transition: 0.3s;
-    }
-
-    .sidebar a.active,
-    .sidebar a:hover {
-        background-color: #3b6b9a;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    }
-
-    /* Main Content (UNCHANGED) */
-    .main-content {
-        margin-left: 230px;
-        padding: 30px;
-        transition: margin-left 0.3s ease;
+        background-color: #f4f6f9;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
     }
 
     /* =========================
-   UPDATED PROFESSIONAL CARDS
-   ========================= */
+   ROW SPACING FIX
+========================= */
+
+    .row.g-3 {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    /* =========================
+   FORCE 3 CARDS PER ROW
+========================= */
+
+    .col-sm-6.col-lg-3 {
+        flex: 0 0 33.3333%;
+        max-width: 33.3333%;
+        padding: 15px;
+    }
+
+    /* Tablet */
+    @media (max-width: 992px) {
+        .col-sm-6.col-lg-3 {
+            flex: 0 0 50%;
+            max-width: 50%;
+        }
+    }
+
+    /* Mobile */
+    @media (max-width: 576px) {
+        .col-sm-6.col-lg-3 {
+            flex: 0 0 100%;
+            max-width: 100%;
+        }
+    }
+
+    /* =========================
+   CARD DESIGN
+========================= */
 
     .card {
         border-radius: 14px;
         transition: all 0.3s ease;
         background: #ffffff;
-        /* Clean white */
-        color: #2c3e50;
         border: 1px solid #e5e7eb;
-        /* Soft border */
+        border-top: 4px solid #d1d5db;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-        min-height: 120px;
+        min-height: 130px;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        margin: 15px;
+        text-align: center;
+
+        /* Remove Bootstrap default card spacing if any */
+        padding: 25px 15px;
     }
 
+    /* Hover Effect */
     .card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        transform: translateY(-5px);
+        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.08);
     }
 
-    /* Remove all colored gradients */
-    .card-primary,
-    .card-success,
-    .card-warning,
-    .card-danger,
+    /* =========================
+   SOFT ACCENT COLORS
+========================= */
+
+    .card-primary {
+        border-top-color: #3b82f6;
+    }
+
+    .card-success {
+        border-top-color: #10b981;
+    }
+
+    .card-warning {
+        border-top-color: #f59e0b;
+    }
+
+    .card-danger {
+        border-top-color: #ef4444;
+    }
+
     .card-secondary {
-        background: #ffffff !important;
+        border-top-color: #6b7280;
     }
 
-    /* Card text styling */
+    /* =========================
+   ICON STYLING
+========================= */
+
+    .card-stat .fa-2x {
+        margin-bottom: 15px;
+        padding: 14px;
+        font-size: 22px;
+        border-radius: 50%;
+    }
+
+    /* Icon Background Colors */
+    .card-primary .fa-2x {
+        background: rgba(59, 130, 246, 0.12);
+        color: #3b82f6;
+    }
+
+    .card-success .fa-2x {
+        background: rgba(16, 185, 129, 0.12);
+        color: #10b981;
+    }
+
+    .card-warning .fa-2x {
+        background: rgba(245, 158, 11, 0.15);
+        color: #f59e0b;
+    }
+
+    .card-danger .fa-2x {
+        background: rgba(239, 68, 68, 0.12);
+        color: #ef4444;
+    }
+
+    .card-secondary .fa-2x {
+        background: rgba(107, 114, 128, 0.12);
+        color: #6b7280;
+    }
+
+    /* =========================
+   TEXT STYLING
+========================= */
+
     .card-stat h6 {
         font-size: 0.9rem;
         color: #6b7280;
-        /* Soft grey */
-        margin-bottom: 6px;
+        margin-bottom: 8px;
         font-weight: 500;
     }
 
     .card-stat h4 {
-        font-size: 1.6rem;
+        font-size: 1.8rem;
         font-weight: 600;
         color: #1f2937;
     }
 
-    /* Icon styling */
-    .card-stat .fa-2x {
-        margin-bottom: 12px;
-        padding: 14px;
-        font-size: 22px;
-        border-radius: 50%;
-        background: #f3f4f6;
-        /* Light grey circle */
-        color: #3b6b9a;
-        /* Subtle professional blue */
-    }
+    /* =========================
+   OPTIONAL: SMOOTHER FONT RENDERING
+========================= */
 
-    /* Footer (UNCHANGED) */
-    .footer {
-        position: fixed;
-        bottom: 0;
-        left: 230px;
-        width: calc(100% - 230px);
-        background: #1d3557;
-        color: #fff;
-        text-align: center;
-        padding: 10px 0;
-        font-size: 0.85rem;
-        box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.1);
-    }
-
-    .card canvas {
-        margin-top: 15px;
-    }
-
-    /* Responsive */
-    @media (max-width:768px) {
-        .main-content {
-            margin-left: 0;
-            padding: 20px;
-        }
-
-        .footer {
-            left: 0;
-            width: 100%;
-        }
+    * {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
     }
     </style>
 </head>
