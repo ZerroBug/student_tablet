@@ -190,48 +190,137 @@ foreach ($classes as $cls) {
         background: linear-gradient(90deg, #1d3557, #243b55);
         color: #fff;
         text-align: center;
-        padding: 1 </head> <body> <?php include_once('../includes/mobile_sidebar.php');
-        ?><?php include_once('../includes/desktop_sidebar.php');
-        ?><div class="main-content"><?php include_once('../includes/topbar.php');
-        ?><div class="row g-3"><div class="col-sm-6 col-lg-4"><div class="card card-stat card-primary"><div class="mb-2"><i class="fa-solid fa-tablet-screen-button fa-2x"></i></div><h6>Total Tablets</h6><h4><?=htmlspecialchars($totalTablets) ?></h4></div></div><div class="col-sm-6 col-lg-4"><div class="card card-stat card-success"><div class="mb-2"><i class="fa-solid fa-check fa-2x"></i></div><h6>Issued Tablets</h6><h4><?=htmlspecialchars($issuedTablets) ?></h4></div></div><div class="col-sm-6 col-lg-4"><div class="card card-stat card-warning"><div class="mb-2"><i class="fa-solid fa-box-open fa-2x"></i></div><h6>Available</h6><h4><?=htmlspecialchars($availableTablets) ?></h4></div></div><div class="col-sm-6 col-lg-4"><div class="card card-stat card-danger"><div class="mb-2"><i class="fa-solid fa-tools fa-2x"></i></div><h6>In Repair</h6><h4><?=htmlspecialchars($inRepair) ?></h4></div></div><div class="col-sm-6 col-lg-4"><div class="card card-stat card-success"><div class="mb-2"><i class="fa-solid fa-rotate-left fa-2x"></i></div><h6>Returned Tablets</h6><h4><?=htmlspecialchars($returnedTablets) ?></h4></div></div><div class="col-sm-6 col-lg-4"><div class="card card-stat card-danger"><div class="mb-2"><i class="fa-solid fa-ban fa-2x"></i></div><h6>Seized Tablets</h6><h4><?=htmlspecialchars($seizedTablets) ?></h4></div></div>< !-- <div class="col-sm-6 col-lg-4"><div class="card card-stat card-secondary"><div class="mb-2"><i class="fa-solid fa-chalkboard-teacher fa-2x"></i></div><h6>Admins</h6><h4><?=htmlspecialchars($adminCount) ?></h4></div></div>--></div>< !-- Full-width Class Usage Chart --><div class="row mt-4 mb-4 g-3"><div class="col-12"><div class="card shadow-sm p-3"><h6>Usage by Class</h6><canvas id="classChart"></canvas></div></div></div><footer class="footer">&copy;
-        2025 Senior High School Tablet Management. All Rights Reserved. </footer></div><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script><script src="https://cdn.jsdelivr.net/npm/chart.js"></script><script> // Class Bar Chart
-        const ctx2=document.getElementById('classChart').getContext('2d');
+        padding: 10px 0;
+        font-size: 0.85rem;
+        box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.15);
+    }
 
-        new Chart(ctx2, {
+    /* ================= RESPONSIVE ================= */
 
-                type: 'bar',
-                data: {
+    @media (max-width: 768px) {
+        .main-content {
+            margin-left: 0;
+            padding: 20px;
+        }
 
-                    labels: <?=json_encode($classLabels) ?>,
-                    datasets: [ {
-                        label: 'Students Who Received Tablets',
-                        data: <?=json_encode($classCounts) ?>,
-                        backgroundColor: '#457b9d',
-                        borderRadius: 6,
-                    }
+        .footer {
+            left: 0;
+            width: 100%;
+        }
 
-                    ]
+        .sidebar {
+            width: 200px;
+        }
+    }
+    </style>
+
+</head>
+
+<body>
+    <?php include_once('../includes/mobile_sidebar.php'); ?>
+    <?php include_once('../includes/desktop_sidebar.php'); ?>
+    <div class="main-content">
+        <?php include_once('../includes/topbar.php'); ?>
+
+        <div class="row g-3">
+            <div class="col-sm-6 col-lg-4">
+                <div class="card card-stat card-primary">
+                    <div class="mb-2"><i class="fa-solid fa-tablet-screen-button fa-2x"></i></div>
+                    <h6>Total Tablets</h6>
+                    <h4><?= htmlspecialchars($totalTablets) ?></h4>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="card card-stat card-success">
+                    <div class="mb-2"><i class="fa-solid fa-check fa-2x"></i></div>
+                    <h6>Issued Tablets</h6>
+                    <h4><?= htmlspecialchars($issuedTablets) ?></h4>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="card card-stat card-warning">
+                    <div class="mb-2"><i class="fa-solid fa-box-open fa-2x"></i></div>
+                    <h6>Available</h6>
+                    <h4><?= htmlspecialchars($availableTablets) ?></h4>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="card card-stat card-danger">
+                    <div class="mb-2"><i class="fa-solid fa-tools fa-2x"></i></div>
+                    <h6>In Repair</h6>
+                    <h4><?= htmlspecialchars($inRepair) ?></h4>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="card card-stat card-success">
+                    <div class="mb-2"><i class="fa-solid fa-rotate-left fa-2x"></i></div>
+                    <h6>Returned Tablets</h6>
+                    <h4><?= htmlspecialchars($returnedTablets) ?></h4>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="card card-stat card-danger">
+                    <div class="mb-2"><i class="fa-solid fa-ban fa-2x"></i></div>
+                    <h6>Seized Tablets</h6>
+                    <h4><?= htmlspecialchars($seizedTablets) ?></h4>
+                </div>
+            </div>
+            <!-- <div class="col-sm-6 col-lg-4">
+                <div class="card card-stat card-secondary">
+                    <div class="mb-2"><i class="fa-solid fa-chalkboard-teacher fa-2x"></i></div>
+                    <h6>Admins</h6>
+                    <h4><?= htmlspecialchars($adminCount) ?></h4>
+                </div>
+            </div> -->
+        </div>
+
+        <!-- Full-width Class Usage Chart -->
+        <div class="row mt-4 mb-4 g-3">
+            <div class="col-12">
+                <div class="card shadow-sm p-3">
+                    <h6>Usage by Class</h6>
+                    <canvas id="classChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            &copy; 2025 Senior High School Tablet Management. All Rights Reserved.
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+    // Class Bar Chart
+    const ctx2 = document.getElementById('classChart').getContext('2d');
+    new Chart(ctx2, {
+        type: 'bar',
+        data: {
+            labels: <?= json_encode($classLabels) ?>,
+            datasets: [{
+                label: 'Students Who Received Tablets',
+                data: <?= json_encode($classCounts) ?>,
+                backgroundColor: '#457b9d',
+                borderRadius: 6,
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    stepSize: 1
                 }
-
-                ,
-                options: {
-
-                    responsive: true,
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            stepSize: 1
-                        }
-                    }
-
-                    ,
-                    plugins: {
-                        legend: {
-                            display: false
-                        }
-                    }
+            },
+            plugins: {
+                legend: {
+                    display: false
                 }
             }
+        }
+    });
+    </script>
+</body>
 
-        );
-        </script></body></html>
+</html>
