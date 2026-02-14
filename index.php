@@ -6,59 +6,63 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin Login</title>
 
-    <!-- Favicon -->
     <link rel="icon" href="./assets/images/logo.jpg" type="image/jpeg" />
 
-    <!-- Google Font: Poppins -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Bootstrap CSS -->
+    <!-- Bootstrap -->
     <link href="assets/vendors/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-    html,
+    * {
+        box-sizing: border-box;
+    }
+
     body {
         font-family: "Poppins", sans-serif;
-        height: 100%;
         margin: 0;
-        background: linear-gradient(135deg, #f0f4f8, #e8ecf1);
+        height: 100vh;
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 1.5rem;
-    }
-
-    .login-card {
-        display: flex;
-        flex-wrap: wrap;
-        max-width: 1020px;
-        width: 100%;
-        border-radius: 20px;
-        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-        background: #fff;
+        background: linear-gradient(135deg, #1e3c72, #2a5298);
         overflow: hidden;
     }
 
+    /* Glass card */
+    .login-card {
+        width: 100%;
+        max-width: 1100px;
+        display: flex;
+        border-radius: 25px;
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(18px);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+    }
+
+    /* LEFT SIDE */
     .left-panel {
         flex: 1;
-        min-width: 520px;
         background: url("./assets/images/tab1.jpg") center/cover no-repeat;
         position: relative;
+        min-height: 600px;
     }
 
-    .overlay {
+    .left-panel::before {
+        content: "";
         position: absolute;
         inset: 0;
-        background: rgba(0, 0, 0, 0.35);
+        background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3));
     }
 
-    .left-panel-content {
+    .left-content {
         position: absolute;
+        z-index: 2;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
@@ -66,18 +70,29 @@
         color: #fff;
     }
 
-    .left-panel-content img {
-        width: 95px;
-        height: 95px;
-        object-fit: cover;
+    .left-content img {
+        width: 110px;
+        height: 110px;
         border-radius: 50%;
-        border: 3px solid #fff;
-        margin-bottom: 1rem;
+        border: 4px solid #fff;
+        margin-bottom: 20px;
     }
 
+    .left-content h3 {
+        font-weight: 600;
+        margin-bottom: 10px;
+    }
+
+    .left-content p {
+        font-size: 0.95rem;
+        opacity: 0.9;
+    }
+
+    /* RIGHT SIDE */
     .right-panel {
         flex: 1;
-        padding: 2.5rem 2rem;
+        background: #ffffff;
+        padding: 60px 50px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -85,130 +100,130 @@
 
     .form-container {
         width: 100%;
-        max-width: 380px;
+        max-width: 400px;
     }
 
-    h4 {
-        font-weight: 600;
-        margin-bottom: 0.5rem;
+    .form-title {
+        font-weight: 700;
+        margin-bottom: 5px;
     }
 
-    .subtitle {
+    .form-subtitle {
         font-size: 0.9rem;
         color: #6c757d;
-        margin-bottom: 2rem;
+        margin-bottom: 30px;
     }
 
     .form-label {
         font-weight: 500;
-        margin-bottom: 0.5rem;
-    }
-
-    .form-label i {
-        color: #0d6efd;
+        margin-bottom: 6px;
     }
 
     .form-control {
-        border-radius: 12px;
-        padding: 0.65rem 1rem;
-        margin-bottom: 1rem;
+        border-radius: 14px;
+        padding: 12px 15px;
+        border: 1px solid #e0e0e0;
+        transition: all 0.3s ease;
     }
 
+    .form-control:focus {
+        border-color: #2a5298;
+        box-shadow: 0 0 0 4px rgba(42, 82, 152, 0.15);
+    }
+
+    /* Gradient button */
     .btn-primary {
-        border-radius: 12px;
-        padding: 0.7rem;
-        font-weight: 500;
+        border-radius: 14px;
+        padding: 12px;
+        font-weight: 600;
+        border: none;
+        background: linear-gradient(135deg, #1e3c72, #2a5298);
+        transition: 0.3s ease;
     }
 
     .btn-primary:hover {
-        background-color: #0b5ed7;
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(42, 82, 152, 0.4);
     }
 
     .forgot-link {
-        font-size: 0.875rem;
+        font-size: 0.85rem;
+        color: #2a5298;
         text-decoration: none;
-        color: #0d6efd;
     }
 
     .forgot-link:hover {
         text-decoration: underline;
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 992px) {
         .login-card {
             flex-direction: column;
+            max-width: 500px;
         }
 
         .left-panel {
-            height: 200px;
-            min-width: 100%;
-        }
-
-        .overlay,
-        .left-panel-content {
-            display: none;
+            min-height: 200px;
         }
 
         .right-panel {
-            padding: 2rem 1.5rem;
+            padding: 40px 30px;
         }
     }
     </style>
 </head>
 
 <body>
+
     <div class="login-card">
-        <!-- Left side -->
+
+        <!-- LEFT PANEL -->
         <div class="left-panel">
-            <div class="overlay"></div>
-            <div class="left-panel-content">
+            <div class="left-content">
                 <img src="./assets/images/logo.jpg" alt="Logo">
-                <h3 class="fw-semibold">Welcome Back!</h3>
-                <p class="smal">Securely manage SM1 tablets with ease</p>
+                <h3>Welcome Back</h3>
+                <p>Securely manage SM1 tablets with confidence and ease.</p>
             </div>
         </div>
 
-        <!-- Right side -->
+        <!-- RIGHT PANEL -->
         <div class="right-panel">
-            <div class="form-container">
-                <div class="text-center mb-4">
-                    <h4 class="fw-bold">Admin</h4>
-                    <p class="subtitle">Log in to manage student tablets</p>
-                </div>
+            <div class="form-container text-center">
 
-                <form id="loginForm" method="post" action="./pages/PHP/login.code.php" autocomplete="on" novalidate>
-                    <div class="mb-3">
-                        <label for="username" class="form-label">
+                <h4 class="form-title">Admin Login</h4>
+                <p class="form-subtitle">Access the management dashboard</p>
+
+                <form method="post" action="./pages/PHP/login.code.php" autocomplete="on">
+
+                    <div class="mb-3 text-start">
+                        <label class="form-label">
                             <i class="fa-solid fa-user me-1"></i> Email
                         </label>
-                        <input type="email" id="username" name="email" class="form-control"
-                            placeholder="Enter your email" required>
+                        <input type="email" name="email" class="form-control" placeholder="Enter your email" required>
                     </div>
 
-                    <div class="mb-3">
-                        <label for="password" class="form-label">
+                    <div class="mb-4 text-start">
+                        <label class="form-label">
                             <i class="fa-solid fa-lock me-1"></i> Password
                         </label>
-                        <input type="password" id="password" name="password" class="form-control"
-                            placeholder="Enter your password" required>
+                        <input type="password" name="password" class="form-control" placeholder="Enter your password"
+                            required>
                     </div>
 
-                    <button type="submit" class="btn btn-primary w-100 mb-3" id="loginBtn" name="login-btn">
+                    <button type="submit" class="btn btn-primary w-100 mb-3">
                         <i class="fa-solid fa-right-to-bracket me-2"></i> Log In
                     </button>
 
-                    <div class="text-center">
-                        <a href="#" class="forgot-link">
-                            <i class="fa-solid fa-key me-1"></i> Forgot Password?
-                        </a>
-                    </div>
+                    <a href="#" class="forgot-link">
+                        <i class="fa-solid fa-key me-1"></i> Forgot Password?
+                    </a>
+
                 </form>
             </div>
         </div>
+
     </div>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
