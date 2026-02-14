@@ -100,7 +100,7 @@
         <h4>Admin Login</h4>
         <p class="subtitle">Access the management dashboard</p>
 
-        <form method="post" action="./pages/PHP/login.code.php">
+        <form method="post" action="./pages/php/login.code.php">
 
             <div class="mb-3 text-start">
                 <label class="form-label">
