@@ -65,16 +65,59 @@ foreach ($classData as $row) {
     body {
         font-family: "Poppins", sans-serif;
         background: linear-gradient(135deg, #eef2f7, #dde6f2);
+        overflow-x: hidden;
     }
 
+    /* ================= SIDEBAR ================= */
+    .sidebar {
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 250px;
+        background: linear-gradient(180deg, #1d3557, #243b55);
+        padding-top: 1rem;
+        z-index: 1040;
+        box-shadow: 4px 0 15px rgba(0, 0, 0, 0.15);
+    }
+
+    .sidebar h4 {
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: #fff;
+        padding-left: 20px;
+        letter-spacing: 0.5px;
+    }
+
+    .sidebar a {
+        color: white;
+        text-decoration: none;
+        display: block;
+        padding: 12px 20px;
+        margin: 6px 10px;
+        border-radius: 10px;
+        font-size: 0.95rem;
+        transition: all 0.3s ease;
+    }
+
+    .sidebar a.active,
+    .sidebar a:hover {
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(6px);
+        transform: translateX(5px);
+    }
+
+    /* ================= MAIN CONTENT ================= */
     .main-content {
         margin-left: 230px;
         padding: 30px;
+        transition: margin-left 0.3s ease;
     }
 
+    /* ================= BEAUTIFUL CARDS ================= */
     .card {
         border-radius: 18px;
-        transition: 0.3s ease;
+        transition: all 0.35s ease;
         color: #fff;
         min-height: 140px;
         display: flex;
@@ -82,12 +125,29 @@ foreach ($classData as $row) {
         justify-content: center;
         align-items: center;
         margin: 15px;
+        position: relative;
+        overflow: hidden;
     }
 
+    /* Shine effect */
+    .card::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(120deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 40%, rgba(255, 255, 255, 0.15) 60%);
+        transform: rotate(25deg);
+    }
+
+    /* Hover effect */
     .card:hover {
-        transform: translateY(-6px);
+        transform: translateY(-6px) scale(1.02);
+        box-shadow: 0 20px 35px rgba(0, 0, 0, 0.18);
     }
 
+    /* ================= MODERN GRADIENT COLORS ================= */
     .card-primary {
         background: linear-gradient(135deg, #667eea, #764ba2);
     }
@@ -104,11 +164,62 @@ foreach ($classData as $row) {
         background: linear-gradient(135deg, #ff416c, #ff4b2b);
     }
 
+    .card-secondary {
+        background: linear-gradient(135deg, #757f9a, #d7dde8);
+        color: #2c3e50;
+    }
+
+    /* ================= TEXT STYLING ================= */
+    .card-stat h6 {
+        font-size: 0.95rem;
+        margin-bottom: 6px;
+        opacity: 0.9;
+    }
+
+    .card-stat h4 {
+        font-size: 1.6rem;
+        font-weight: 600;
+    }
+
+    /* ================= ICON STYLE ================= */
+    .card-stat .fa-2x {
+        margin-bottom: 12px;
+        padding: 16px;
+        font-size: 26px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.25);
+        backdrop-filter: blur(4px);
+    }
+
+    /* ================= FOOTER ================= */
     .footer {
-        background: #1d3557;
+        position: fixed;
+        bottom: 0;
+        left: 230px;
+        width: calc(100% - 230px);
+        background: linear-gradient(90deg, #1d3557, #243b55);
         color: #fff;
         text-align: center;
-        padding: 10px;
+        padding: 10px 0;
+        font-size: 0.85rem;
+        box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    /* ================= RESPONSIVE ================= */
+    @media (max-width: 768px) {
+        .main-content {
+            margin-left: 0;
+            padding: 20px;
+        }
+
+        .footer {
+            left: 0;
+            width: 100%;
+        }
+
+        .sidebar {
+            width: 200px;
+        }
     }
     </style>
 </head>
