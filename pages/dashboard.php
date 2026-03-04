@@ -308,13 +308,19 @@ foreach ($classData as $row) {
         </div>
 
     </div>
-
-    <footer class="footer">
-        &copy; 2026 Senior High School Tablet Management System
-    </footer>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-    const ctx = document.getElementById('classChart').getContext('2d');
+    < footer class = "footer" >
+        &
+        copy;
+    2026 Senior High School Tablet Management System
+        <
+        /footer>
+
+        <
+        script >
+        const ctx = document.getElementById('classChart').getContext('2d');
 
     new Chart(ctx, {
         type: 'bar',
