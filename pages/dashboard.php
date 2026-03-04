@@ -28,14 +28,19 @@ $seizedTablets = $pdo->query("SELECT COUNT(*) FROM tablet WHERE status = 'Seized
    TABLETS ISSUED PER CLASS
 ======================== */
 
+/* ========================
+   TABLETS ASSIGNED PER CLASS
+======================== */
+
 $classData = $pdo->query("
     SELECT 
         c.class_Name,
-        COUNT(t.id) AS total_issued
+        COUNT(t.id) AS tablets_assigned
     FROM class c
     LEFT JOIN students s ON s.class_id = c.id
     LEFT JOIN tablet_assignments ta ON ta.student_id = s.id
-    LEFT JOIN tablet t ON t.id = ta.tablet_id AND t.is_assigned = 1
+    LEFT JOIN tablet t ON t.id = ta.tablet_id
+    WHERE t.is_assigned = 1
     GROUP BY c.id
     ORDER BY c.id ASC
 ")->fetchAll(PDO::FETCH_ASSOC);
@@ -45,7 +50,7 @@ $classCounts = [];
 
 foreach ($classData as $row) {
     $classLabels[] = $row['class_Name'];
-    $classCounts[] = $row['total_issued'];
+    $classCounts[] = $row['tablets_assigned'];
 }
 ?>
 
