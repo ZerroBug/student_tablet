@@ -62,6 +62,7 @@ foreach ($classData as $row) {
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <style>
+    /* ================= GLOBAL ================= */
     body {
         font-family: "Poppins", sans-serif;
         background: linear-gradient(135deg, #eef2f7, #dde6f2);
@@ -90,7 +91,7 @@ foreach ($classData as $row) {
     }
 
     .sidebar a {
-        color: white;
+        color: #fff;
         text-decoration: none;
         display: block;
         padding: 12px 20px;
@@ -114,7 +115,7 @@ foreach ($classData as $row) {
         transition: margin-left 0.3s ease;
     }
 
-    /* ================= BEAUTIFUL CARDS ================= */
+    /* ================= CARDS ================= */
     .card {
         border-radius: 18px;
         transition: all 0.35s ease;
@@ -137,7 +138,10 @@ foreach ($classData as $row) {
         left: -50%;
         width: 200%;
         height: 200%;
-        background: linear-gradient(120deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 40%, rgba(255, 255, 255, 0.15) 60%);
+        background: linear-gradient(120deg,
+                rgba(255, 255, 255, 0.15) 0%,
+                rgba(255, 255, 255, 0.05) 40%,
+                rgba(255, 255, 255, 0.15) 60%);
         transform: rotate(25deg);
     }
 
@@ -147,7 +151,7 @@ foreach ($classData as $row) {
         box-shadow: 0 20px 35px rgba(0, 0, 0, 0.18);
     }
 
-    /* ================= MODERN GRADIENT COLORS ================= */
+    /* ================= CARD COLORS ================= */
     .card-primary {
         background: linear-gradient(135deg, #667eea, #764ba2);
     }
@@ -169,7 +173,7 @@ foreach ($classData as $row) {
         color: #2c3e50;
     }
 
-    /* ================= TEXT STYLING ================= */
+    /* ================= CARD TEXT ================= */
     .card-stat h6 {
         font-size: 0.95rem;
         margin-bottom: 6px;
@@ -191,6 +195,14 @@ foreach ($classData as $row) {
         backdrop-filter: blur(4px);
     }
 
+    /* ================= CHART CARD ================= */
+    .chart-card {
+        background: #fff;
+        border-radius: 18px;
+        padding: 25px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    }
+
     /* ================= FOOTER ================= */
     .footer {
         position: fixed;
@@ -207,6 +219,7 @@ foreach ($classData as $row) {
 
     /* ================= RESPONSIVE ================= */
     @media (max-width: 768px) {
+
         .main-content {
             margin-left: 0;
             padding: 20px;
