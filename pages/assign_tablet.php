@@ -410,7 +410,8 @@ $assigned_tablets = $assigned_stmt->fetchAll(PDO::FETCH_ASSOC);
             return;
         }
 
-        window.location.href = "pages/php/export_tablets_csv.php?class_id=" + classId;
+        // Correct path — remove extra "pages/"
+        window.location.href = "php/export_tablets_csv.php?class_id=" + classId;
     }
     </script>
 
