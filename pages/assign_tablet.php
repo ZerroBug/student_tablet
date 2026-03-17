@@ -288,10 +288,6 @@ $assigned_tablets = $assigned_stmt->fetchAll(PDO::FETCH_ASSOC);
                 </button>
             </div>
 
-            <div class="col-md-4 ms-auto">
-                <input type="text" id="tableSearch" class="form-control"
-                    placeholder="Search by Tablet ID, Name, Index, Class...">
-            </div>
         </div>
         <!-- Assigned Tablets Table -->
         <div class="card shadow-sm p-4 mt-5">
