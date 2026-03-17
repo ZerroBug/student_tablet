@@ -176,7 +176,7 @@
                     <p class="subtitle">Log in to manage student tablets</p>
                 </div>
 
-                <form id="loginForm" method="post" action="./pages/PHP/login.code.php" autocomplete="on" novalidate>
+                <form id="loginForm" method="post" action="./pages/php/login.code.php" autocomplete="on" novalidate>
                     <div class="mb-3">
                         <label for="username" class="form-label">
                             <i class="fa-solid fa-user me-1"></i> Email
