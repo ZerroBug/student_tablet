@@ -284,7 +284,7 @@ $assigned_tablets = $assigned_stmt->fetchAll(PDO::FETCH_ASSOC);
 
             <div class="col-md-2">
                 <button class="btn btn-success w-100" onclick="downloadCSV()">
-                    <i class="fa fa-download"></i> Download CSV
+                    <i class="fa fa-download"></i> Export
                 </button>
             </div>
 
