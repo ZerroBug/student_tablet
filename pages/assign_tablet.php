@@ -270,7 +270,29 @@ $assigned_tablets = $assigned_stmt->fetchAll(PDO::FETCH_ASSOC);
             </form>
         </div>
 
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <select id="exportClass" class="form-select">
+                    <option value="">-- Select Class to Export --</option>
+                    <?php foreach ($classes as $class): ?>
+                    <option value="<?= $class['id'] ?>">
+                        <?= htmlspecialchars($class['class_name']) ?>
+                    </option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
 
+            <div class="col-md-2">
+                <button class="btn btn-success w-100" onclick="downloadCSV()">
+                    <i class="fa fa-download"></i> Download CSV
+                </button>
+            </div>
+
+            <div class="col-md-4 ms-auto">
+                <input type="text" id="tableSearch" class="form-control"
+                    placeholder="Search by Tablet ID, Name, Index, Class...">
+            </div>
+        </div>
         <!-- Assigned Tablets Table -->
         <div class="card shadow-sm p-4 mt-5">
             <h5 class="text-primary p-3">Assigned Tablets</h5>
@@ -375,6 +397,20 @@ $assigned_tablets = $assigned_stmt->fetchAll(PDO::FETCH_ASSOC);
         if (confirm("Are you sure you want to delete this tablet assignment?")) {
             window.location.href = "php/delete_assignment.php?id=" + id;
         }
+    }
+    </script>
+
+
+    <script>
+    function downloadCSV() {
+        let classId = document.getElementById("exportClass").value;
+
+        if (!classId) {
+            alert("Please select a class first.");
+            return;
+        }
+
+        window.location.href = "../pages/php/export_tablets_csv.php?class_id=" + classId;
     }
     </script>
 
