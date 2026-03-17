@@ -80,7 +80,7 @@ $unreadCount = $unreadCountStmt->fetchColumn();
                     <hr class="dropdown-divider">
                 </li>
                 <li>
-                    <a class="dropdown-item text-danger" href="../pages/PHP/logout.code.php">
+                    <a class="dropdown-item text-danger" href="../pages/php/logout.code.php">
                         <i class="fa fa-sign-out-alt me-2"></i> Logout
                     </a>
                 </li>
