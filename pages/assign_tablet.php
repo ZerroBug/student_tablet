@@ -270,29 +270,31 @@ $assigned_tablets = $assigned_stmt->fetchAll(PDO::FETCH_ASSOC);
             </form>
         </div>
 
-        <div class="row mb-3">
-            <div class="col-md-4">
-                <select id="exportClass" class="form-select">
-                    <option value="">-- Select Class to Export --</option>
-                    <?php foreach ($classes as $class): ?>
-                    <option value="<?= $class['id'] ?>">
-                        <?= htmlspecialchars($class['class_name']) ?>
-                    </option>
-                    <?php endforeach; ?>
-                </select>
-            </div>
 
-            <div class="col-md-2">
-                <button class="btn btn-success w-100" onclick="downloadCSV()">
-                    <i class="fa fa-download"></i> Export
-                </button>
-            </div>
-
-        </div>
         <!-- Assigned Tablets Table -->
         <div class="card shadow-sm p-4 mt-5">
             <h5 class="text-primary p-3">Assigned Tablets</h5>
             <div class="table-responsive">
+
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <select id="exportClass" class="form-select">
+                            <option value="">-- Select Class to Export --</option>
+                            <?php foreach ($classes as $class): ?>
+                            <option value="<?= $class['id'] ?>">
+                                <?= htmlspecialchars($class['class_name']) ?>
+                            </option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+
+                    <div class="col-md-2">
+                        <button class="btn btn-success w-100" onclick="downloadCSV()">
+                            <i class="fa fa-download"></i> Export
+                        </button>
+                    </div>
+
+                </div>
                 <div class="row mb-3">
                     <div class="col-md-4 ms-auto">
                         <input type="text" id="tableSearch" class="form-control"
