@@ -401,6 +401,9 @@ $assigned_tablets = $assigned_stmt->fetchAll(PDO::FETCH_ASSOC);
     </script>
 
 
+
+
+
     <script>
     function downloadCSV() {
         let classId = document.getElementById("exportClass").value;
@@ -410,8 +413,8 @@ $assigned_tablets = $assigned_stmt->fetchAll(PDO::FETCH_ASSOC);
             return;
         }
 
-        // Correct path — remove extra "pages/"
-        window.location.href = "php/export_tablets_csv.php?class_id=" + classId;
+        // Absolute path from root
+        window.location.href = "/pages/php/export_tablets_csv.php?class_id=" + classId;
     }
     </script>
 
