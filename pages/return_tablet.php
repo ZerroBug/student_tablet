@@ -217,7 +217,8 @@ foreach ($assignments as $a) {
             <div class="card shadow-sm mb-5">
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
-                        <h5 class="text-primary mb-0"><i class="fa fa-tablet-alt me-2"></i>Return / Seize Tablet</h5>
+                        <h5 class="text-primary mb-0"><i class="fa fa-tablet-alt me-2"></i>Return / Seize Tablet
+                            /Missing</h5>
                     </div>
 
                     <form method="POST" action="process_return.php" autocomplete="off">
@@ -263,6 +264,7 @@ foreach ($assignments as $a) {
                                 <select name="action_taken" class="form-select" required>
                                     <option value="" disabled selected>Select Action</option>
                                     <option value="Returned">Returned</option>
+                                    <option value="Missing">Missing</option>
 
                                 </select>
                             </div>
@@ -277,6 +279,7 @@ foreach ($assignments as $a) {
                                     <option value="lost_accessories">Lost Accessories</option>
                                     <option value="password_reset">Password Reset</option>
                                     <option value="Seized">Seized</option>
+                                    <option value="Missing">Missing</option>
 
                                     <option value="other">Other</option>
                                 </select>
