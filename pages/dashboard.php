@@ -24,7 +24,7 @@ $returnedTablets = $pdo->query("SELECT COUNT(*) FROM tablet_returns WHERE action
 // Seized
 $seizedTablets = $pdo->query("SELECT COUNT(*) FROM tablet WHERE status = 'Seized'")->fetchColumn();
 // ✅ Missing Tablets (NEW)
-$returnedTablets = $pdo->query("SELECT COUNT(*) FROM tablet_returns WHERE action_taken = 'Missing'")->fetchColumn();
+$missingTablets = $pdo->query("SELECT COUNT(*) FROM tablet_returns WHERE action_taken = 'Missing'")->fetchColumn();
 
 /* ========================
    STUDENTS ASSIGNED PER CLASS
