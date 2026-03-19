@@ -285,13 +285,6 @@ foreach ($classData as $row) {
             <div class="col-sm-6 col-lg-4">
                 <div class="card card-success card-stat">
                     <i class="fa-solid fa-rotate-left fa-2x mb-2"></i>
-                    <h6>Returned Tablets</h6>
-                    <h4><?= htmlspecialchars($returnedTablets) ?></h4>
-                </div>
-            </div>
-            <div class="col-sm-6 col-lg-4">
-                <div class="card card-success card-stat">
-                    <i class="fa-solid fa-rotate-left fa-2x mb-2"></i>
                     <h6>Missing Tablets</h6>
                     <h4><?= htmlspecialchars($missingTablets) ?></h4>
                 </div>
