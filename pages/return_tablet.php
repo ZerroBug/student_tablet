@@ -319,7 +319,7 @@ foreach ($assignments as $a) {
                                     <th>Class</th>
                                     <th>Reason</th>
                                     <th>Action</th>
-                                    <th>Status</th>
+                                    <!-- <th>Status</th> -->
                                     <th>Date</th>
                                 </tr>
                             </thead>
@@ -358,7 +358,7 @@ ORDER BY tr.return_date DESC
                                             <?= $row['action_taken']; ?>
                                         </span>
                                     </td>
-                                    <td>
+                                    <!-- <td>
                                         <form method="POST" style="min-width:150px;">
                                             <input type="hidden" name="tablet_id"
                                                 value="<?= $row['tablet_internal_id']; ?>">
@@ -379,7 +379,7 @@ ORDER BY tr.return_date DESC
 
                                             <input type="hidden" name="update_status" value="1">
                                         </form>
-                                    </td>
+                                    </td> -->
 
                                     <td><?= date('d M Y', strtotime($row['return_date'])); ?></td>
                                 </tr>
