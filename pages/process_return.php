@@ -12,11 +12,7 @@ if (isset($_POST['submit_return'])) {
     $description   = trim($_POST['description']);
     $received_by   = $_SESSION['username'] ?? 'Admin';
 
-    // Validate action
-    if (!in_array($action, ['Returned', 'Seized'])) {
-        echo "<script>alert('Invalid action selected ❌');</script>";
-        exit;
-    }
+ 
 
     // Fetch tablet internal ID from assignment
     $stmt = $pdo->prepare("SELECT tablet_id FROM tablet_assignments WHERE id = ?");
