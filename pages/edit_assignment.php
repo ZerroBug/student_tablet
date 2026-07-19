@@ -19,12 +19,13 @@ $stmt = $pdo->prepare("
         t.id AS tablet_db_id,
         t.tablet_id, t.serial_No, t.imei_No,
 
-        s.id AS student_id,
-        s.full_name AS student_name,
-        s.index_no,
-        s.level,
-        s.class_id,
-        s.house_id,
+       s.id AS student_id,
+s.full_name AS student_name,
+s.index_no,
+s.residence_status,
+s.level,
+s.class_id,
+s.house_id,
 
         g.id AS guardian_id,
         g.full_name AS guardian_name,
@@ -36,6 +37,9 @@ $stmt = $pdo->prepare("
     INNER JOIN guardians g ON g.student_id = s.id
     WHERE ta.id = ?
 ");
+
+
+
 $stmt->execute([$assignment_id]);
 $data = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -58,16 +62,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Update student
         $stmt = $pdo->prepare("
             UPDATE students SET
-                full_name = ?,
-                index_no = ?,
-                level = ?,
-                class_id = ?,
-                house_id = ?
-            WHERE id = ?
+    full_name = ?,
+    index_no = ?,
+    residence_status = ?,
+    level = ?,
+    class_id = ?,
+    house_id = ?
+WHERE id = ?
         ");
         $stmt->execute([
             $_POST['student_name'],
             $_POST['index_no'],
+            $_POST['residence_status'],
             $_POST['level'],
             $_POST['class_id'],
             $_POST['house_id'],
@@ -261,26 +267,64 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
 
                 <div class="row">
-                    <div class="col-md-6 mb-3">
+
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Residence Status</label>
+
+                        <select name="residence_status" class="form-select" required>
+
+                            <option value="Boarding"
+                                <?= ($data['residence_status'] ?? '') == 'Boarding' ? 'selected' : '' ?>>
+                                Boarding
+                            </option>
+
+                            <option value="Day" <?= ($data['residence_status'] ?? '') == 'Day' ? 'selected' : '' ?>>
+                                Day
+                            </option>
+
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+
                         <label class="form-label">Class</label>
+
                         <select name="class_id" class="form-select" required>
+
                             <?php foreach($classes as $c): ?>
+
                             <option value="<?= $c['id'] ?>" <?= $data['class_id']==$c['id']?'selected':'' ?>>
+
                                 <?= htmlspecialchars($c['class_name']) ?>
+
                             </option>
+
                             <?php endforeach; ?>
+
                         </select>
+
                     </div>
-                    <div class="col-md-6 mb-3">
+
+                    <div class="col-md-4 mb-3">
+
                         <label class="form-label">House</label>
+
                         <select name="house_id" class="form-select" required>
+
                             <?php foreach($houses as $h): ?>
+
                             <option value="<?= $h['id'] ?>" <?= $data['house_id']==$h['id']?'selected':'' ?>>
+
                                 <?= htmlspecialchars($h['house_name']) ?>
+
                             </option>
+
                             <?php endforeach; ?>
+
                         </select>
+
                     </div>
+
                 </div>
 
                 <!-- Guardian Info -->
