@@ -5,7 +5,7 @@ include_once('../includes/db_connection.php');
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
     echo "<script>
             alert('Invalid Report ID.');
-            window.location='reports.php';
+            window.location='report_tablet.php';
           </script>";
     exit;
 }
@@ -25,7 +25,7 @@ try {
     if ($stmt->rowCount() == 0) {
         echo "<script>
                 alert('Report not found.');
-                window.location='reports.php';
+                window.location='report_tablet.php';
               </script>";
         exit;
     }
@@ -40,14 +40,14 @@ try {
 
     echo "<script>
             alert('Report deleted successfully.');
-            window.location='reports.php';
+            window.location='report_tablet.php';
           </script>";
 
 } catch (PDOException $e) {
 
     echo "<script>
             alert('Unable to delete report.');
-            window.location='reports.php';
+            window.location='report_tablet.php';
           </script>";
 }
 ?>
