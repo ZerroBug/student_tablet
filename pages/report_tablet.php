@@ -509,7 +509,7 @@ foreach ($assignments as $a) {
                                         </a>
 
                                         <a href="delete_report.php?id=<?= $row['id']; ?>" class="btn btn-sm btn-danger"
-                                            onclick="return confirm('Delete this report?');">
+                                            onclick="return confirm('Are you sure you want to delete this report?');">
                                             <i class="fa fa-trash"></i>
                                         </a>
 
