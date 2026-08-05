@@ -500,9 +500,7 @@ foreach ($assignments as $a) {
 
                                     <td class="text-center">
 
-                                        <a href="view_report.php?id=<?= $row['id']; ?>" class="btn btn-sm btn-info">
-                                            <i class="fa fa-eye"></i>
-                                        </a>
+
 
                                         <a href="edit_report.php?id=<?= $row['id']; ?>" class="btn btn-sm btn-warning">
                                             <i class="fa fa-edit"></i>
