@@ -20,8 +20,8 @@
             <li><a class="dropdown-item text-primary" href="assign_tablet.php"><i class="fa fa-user-plus me-2"></i>
                     Assign Tablet</a>
             </li>
-            <li><a class="dropdown-item text-primary" href="return_tablet.php"><i class="fa fa-undo me-2"></i> Return
-                    Tablet</a></li>
+            <!-- <li><a class="dropdown-item text-primary" href="return_tablet.php"><i class="fa fa-undo me-2"></i> Return -->
+            Tablet</a></li>
             <li><a class="dropdown-item text-primary" href="#"><i class="fa fa-tools me-2"></i> Maintenance</a></li>
         </ul>
     </div>
@@ -50,6 +50,6 @@
         </ul>
     </div>
 
-    <a href="#"><i class="fa fa-chart-bar me-2 mx-2"></i> Reports</a>
+    <a href="report_tablet.php"><i class="fa fa-chart-bar me-2 mx-2"></i> Reports</a>
     <a href="#"><i class="fa fa-cog me-2 mx-2"></i> Settings</a>
 </nav>

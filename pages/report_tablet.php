@@ -217,14 +217,12 @@ foreach ($assignments as $a) {
             <div class="card shadow-sm mb-5">
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
-                        <h5 class="text-primary mb-0"><i class="fa fa-tablet-alt me-2"></i>Return / Seize Tablet
-                            /Missing</h5>
+                        <h5 class="text-primary mb-0">
+                            <i class="fa fa-tablet-alt me-2"></i>Report Tablet Issue
+                        </h5>
                     </div>
 
                     <form method="POST" action="process_return.php" autocomplete="off">
-
-                        <!-- Optional CSRF Token (Recommended) -->
-                        <!-- <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token']; ?>"> -->
 
                         <div class="row g-3">
 
@@ -232,7 +230,7 @@ foreach ($assignments as $a) {
                             <div class="col-lg-4 col-md-6">
                                 <label class="form-label fw-semibold">Student Name</label>
                                 <select name="student_id" id="student_select" class="form-select" required>
-                                    <option value="" disabled selected>Select Student</option>
+                                    <option value="" selected disabled>Select Student</option>
                                     <?php foreach($students as $student): ?>
                                     <option value="<?= $student['id']; ?>" data-class-id="<?= $student['class_id']; ?>"
                                         data-class-name="<?= htmlspecialchars($student['class_Name']); ?>"
@@ -241,6 +239,7 @@ foreach ($assignments as $a) {
                                     </option>
                                     <?php endforeach; ?>
                                 </select>
+
                                 <input type="hidden" name="class_id" id="class_id">
                             </div>
 
@@ -248,7 +247,7 @@ foreach ($assignments as $a) {
                             <div class="col-lg-4 col-md-6">
                                 <label class="form-label fw-semibold">Tablet ID</label>
                                 <select name="tablet_id" id="tablet_id" class="form-select" required>
-                                    <option value="" disabled selected>Select Tablet</option>
+                                    <option value="" selected disabled>Select Tablet</option>
                                 </select>
                             </div>
 
@@ -258,135 +257,274 @@ foreach ($assignments as $a) {
                                 <input type="text" id="class_name" class="form-control bg-light" readonly>
                             </div>
 
-                            <!-- Action -->
+                            <!-- Incident Type -->
                             <div class="col-lg-4 col-md-6">
-                                <label class="form-label fw-semibold">Action Taken</label>
-                                <select name="action_taken" class="form-select" required>
-                                    <option value="" disabled selected>Select Action</option>
+                                <label class="form-label fw-semibold">
+                                    <i class="fa fa-exclamation-circle text-danger me-1"></i>
+                                    Incident Type
+                                </label>
+                                <select name="incident_type" class="form-select" required>
+                                    <option value="" selected disabled>Select Incident</option>
+                                    <option value="Missing">Missing Tablet</option>
+                                    <option value="Damaged">Damaged</option>
+                                    <option value="Faulty">Faulty</option>
+                                    <option value="Screen Broken">Screen Broken</option>
+                                    <option value="Battery Problem">Battery Problem</option>
+                                    <option value="Charging Problem">Charging Problem</option>
+                                    <option value="Password Reset">Password Reset</option>
+                                    <option value="Lost Accessories">Lost Accessories</option>
+                                    <option value="Seized">Seized</option>
                                     <option value="Returned">Returned</option>
-                                    <option value="Missing">Missing</option>
-
+                                    <option value="Other">Other</option>
                                 </select>
                             </div>
 
-                            <!-- Reason -->
+                            <!-- Action Taken -->
                             <div class="col-lg-4 col-md-6">
-                                <label class="form-label fw-semibold">Reason</label>
-                                <select name="reason" class="form-select" required>
-                                    <option value="" disabled selected>Select Reason</option>
-                                    <option value="damaged">Damaged</option>
-                                    <option value="faulty">Faulty</option>
-                                    <option value="lost_accessories">Lost Accessories</option>
-                                    <option value="password_reset">Password Reset</option>
-                                    <option value="Seized">Seized</option>
-                                    <option value="Missing">Missing</option>
+                                <label class="form-label fw-semibold">
+                                    <i class="fa fa-tools text-primary me-1"></i>
+                                    Action Taken
+                                </label>
+                                <select name="action_taken" class="form-select" required>
+                                    <option value="" selected disabled>Select Action</option>
+                                    <option value="Received">Received from Student</option>
+                                    <option value="Returned to Store">Returned to Store</option>
+                                    <option value="Sent for Repair">Sent for Repair</option>
+                                    <option value="Repaired">Repaired</option>
+                                    <option value="Reissued">Reissued</option>
+                                    <option value="Replaced">Replaced</option>
+                                    <option value="Recovered">Recovered</option>
+                                    <option value="Escalated">Escalated</option>
+                                    <option value="Under Investigation">Under Investigation</option>
+                                    <option value="Student Advised">Student Advised</option>
+                                    <option value="No Action Yet">No Action Yet</option>
+                                </select>
+                            </div>
 
-                                    <option value="other">Other</option>
+                            <!-- Current Status -->
+                            <div class="col-lg-4 col-md-6">
+                                <label class="form-label fw-semibold">
+                                    <i class="fa fa-flag text-success me-1"></i>
+                                    Current Status
+                                </label>
+                                <select name="status" class="form-select" required>
+                                    <option value="" selected disabled>Select Status</option>
+                                    <option value="Reported">Reported</option>
+                                    <option value="Pending">Pending</option>
+                                    <option value="Under Repair">Under Repair</option>
+                                    <option value="Repaired">Repaired</option>
+                                    <option value="Returned">Returned</option>
+                                    <option value="Closed">Closed</option>
                                 </select>
                             </div>
 
                             <!-- Remarks -->
                             <div class="col-12">
-                                <label class="form-label fw-semibold">Remarks</label>
-                                <textarea name="description" class="form-control" rows="3"
-                                    placeholder="Optional remarks..."></textarea>
+                                <label class="form-label fw-semibold">
+                                    <i class="fa fa-comment-dots me-1"></i>
+                                    Remarks
+                                </label>
+                                <textarea name="description" class="form-control" rows="4"
+                                    placeholder="Enter any additional information about the incident..."></textarea>
                             </div>
 
                             <!-- Submit -->
-                            <div class="col-12 text-end mt-3">
-                                <button type="submit" name="submit_return" class="btn btn-danger px-4">
-                                    <i class="fa fa-save me-2"></i>Process Tablet
+                            <div class="col-12 text-end">
+                                <button type="submit" name="submit_report" class="btn btn-primary px-4">
+                                    <i class="fa fa-paper-plane me-2"></i>
+                                    Submit Report
                                 </button>
                             </div>
 
                         </div>
+
                     </form>
 
                 </div>
             </div>
 
-            <!-- RETURNED TABLETS TABLE -->
             <div class="card shadow-sm mb-5">
                 <div class="card-body">
-                    <h5 class="text-primary mb-4">Returned / Seized Tablets</h5>
+
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h5 class="text-primary mb-0">
+                            <i class="fa fa-list me-2"></i>Tablet Incident Reports
+                        </h5>
+                    </div>
+
                     <div class="table-responsive">
-                        <table id="returnsTable" class="table table-hover table-bordered table-striped">
+                        <table id="reportsTable" class="table table-bordered table-hover table-striped align-middle">
+
                             <thead class="table-dark text-center">
                                 <tr>
                                     <th>#</th>
+                                    <th>Date</th>
                                     <th>Tablet ID</th>
                                     <th>Student</th>
                                     <th>Class</th>
-                                    <th>Reason</th>
-                                    <th>Action</th>
-                                    <!-- <th>Status</th> -->
-                                    <th>Date</th>
+                                    <th>Incident Type</th>
+                                    <th>Action Taken</th>
+                                    <th>Status</th>
+                                    <th>Reported By</th>
+                                    <th width="140">Actions</th>
                                 </tr>
                             </thead>
+
                             <tbody>
+
                                 <?php
-                        $stmt = $pdo->query("
-                         SELECT 
-    t.id AS tablet_internal_id,
-    t.tablet_id AS tablet_code,
-    t.status,
-    s.full_name,
-    c.class_Name,
-    tr.reason,
-    tr.action_taken,
-    tr.return_date
-FROM tablet_returns tr
-JOIN tablet t ON tr.tablet_id = t.id
-JOIN students s ON tr.student_id = s.id
-JOIN class c ON tr.class_id = c.id
-ORDER BY tr.return_date DESC
 
+                $stmt = $pdo->query("
+                    SELECT
+                        tr.id,
+                        tr.report_date,
+                        tr.incident_type,
+                        tr.action_taken,
+                        tr.status,
+                        tr.received_by,
 
-                        ");
-                        $i = 1;
-                        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)):
-                        ?>
-                                <tr class="text-center">
-                                    <td><?= $i++; ?></td>
-                                    <td><?= htmlspecialchars($row['tablet_code']); ?></td>
-                                    <td><?= htmlspecialchars($row['full_name']); ?></td>
-                                    <td><?= htmlspecialchars($row['class_Name']); ?></td>
-                                    <td><?= htmlspecialchars($row['reason']); ?></td>
+                        t.tablet_id,
+
+                        s.full_name,
+
+                        c.class_Name
+
+                    FROM tablet_reports tr
+
+                    INNER JOIN tablet t
+                    ON tr.tablet_id=t.id
+
+                    INNER JOIN students s
+                    ON tr.student_id=s.id
+
+                    INNER JOIN class c
+                    ON tr.class_id=c.id
+
+                    ORDER BY tr.report_date DESC
+                ");
+
+                $i=1;
+
+                while($row=$stmt->fetch(PDO::FETCH_ASSOC)):
+                ?>
+
+                                <tr>
+
+                                    <td class="text-center"><?= $i++; ?></td>
+
                                     <td>
-                                        <span
-                                            class="badge bg-<?= $row['action_taken']=='Seized'?'danger':'success'; ?>">
-                                            <?= $row['action_taken']; ?>
-                                        </span>
+                                        <?= date('d M Y',strtotime($row['report_date'])); ?>
                                     </td>
-                                    <!-- <td>
-                                        <form method="POST" style="min-width:150px;">
-                                            <input type="hidden" name="tablet_id"
-                                                value="<?= $row['tablet_internal_id']; ?>">
 
-                                            <select name="status" class="form-select form-select-sm"
-                                                onchange="confirmStatusChange(this.form)">
-                                                <?php
-    $statuses = ['Available', 'Under Repair', 'Seized', 'Repaired'];
-    foreach ($statuses as $status_option):
-    ?>
-                                                <option value="<?= $status_option; ?>"
-                                                    <?= $row['status'] === $status_option ? 'selected' : ''; ?>>
-                                                    <?= $status_option; ?>
-                                                </option>
-                                                <?php endforeach; ?>
-                                            </select>
+                                    <td>
+                                        <strong><?= htmlspecialchars($row['tablet_id']); ?></strong>
+                                    </td>
 
+                                    <td><?= htmlspecialchars($row['full_name']); ?></td>
 
-                                            <input type="hidden" name="update_status" value="1">
-                                        </form>
-                                    </td> -->
+                                    <td><?= htmlspecialchars($row['class_Name']); ?></td>
 
-                                    <td><?= date('d M Y', strtotime($row['return_date'])); ?></td>
+                                    <td>
+
+                                        <?php
+
+                        switch($row['incident_type']){
+
+                            case "Missing":
+                                echo '<span class="badge bg-danger">Missing</span>';
+                                break;
+
+                            case "Damaged":
+                                echo '<span class="badge bg-warning text-dark">Damaged</span>';
+                                break;
+
+                            case "Faulty":
+                                echo '<span class="badge bg-secondary">Faulty</span>';
+                                break;
+
+                            case "Returned":
+                                echo '<span class="badge bg-success">Returned</span>';
+                                break;
+
+                            case "Seized":
+                                echo '<span class="badge bg-dark">Seized</span>';
+                                break;
+
+                            default:
+                                echo '<span class="badge bg-info">'.$row['incident_type'].'</span>';
+                        }
+
+                        ?>
+
+                                    </td>
+
+                                    <td>
+                                        <?= htmlspecialchars($row['action_taken']); ?>
+                                    </td>
+
+                                    <td>
+
+                                        <?php
+
+                        switch($row['status']){
+
+                            case "Reported":
+                                echo '<span class="badge bg-primary">Reported</span>';
+                                break;
+
+                            case "Pending":
+                                echo '<span class="badge bg-warning text-dark">Pending</span>';
+                                break;
+
+                            case "Under Repair":
+                                echo '<span class="badge bg-info">Under Repair</span>';
+                                break;
+
+                            case "Repaired":
+                                echo '<span class="badge bg-success">Repaired</span>';
+                                break;
+
+                            case "Closed":
+                                echo '<span class="badge bg-dark">Closed</span>';
+                                break;
+
+                            default:
+                                echo '<span class="badge bg-secondary">'.$row['status'].'</span>';
+                        }
+
+                        ?>
+
+                                    </td>
+
+                                    <td><?= htmlspecialchars($row['received_by']); ?></td>
+
+                                    <td class="text-center">
+
+                                        <a href="view_report.php?id=<?= $row['id']; ?>" class="btn btn-sm btn-info">
+                                            <i class="fa fa-eye"></i>
+                                        </a>
+
+                                        <a href="edit_report.php?id=<?= $row['id']; ?>" class="btn btn-sm btn-warning">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+
+                                        <a href="delete_report.php?id=<?= $row['id']; ?>" class="btn btn-sm btn-danger"
+                                            onclick="return confirm('Delete this report?');">
+                                            <i class="fa fa-trash"></i>
+                                        </a>
+
+                                    </td>
+
                                 </tr>
+
                                 <?php endwhile; ?>
+
                             </tbody>
+
                         </table>
+
                     </div>
+
                 </div>
             </div>
 

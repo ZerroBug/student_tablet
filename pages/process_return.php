@@ -1,63 +1,100 @@
 <?php
 include_once('../includes/auth_check.php');
-include_once '../includes/db_connection.php';
+include_once('../includes/db_connection.php');
 
-if (isset($_POST['submit_return'])) {
+if (isset($_POST['submit_report'])) {
 
-    $assignment_id = intval($_POST['tablet_id']); 
+    $assignment_id = intval($_POST['tablet_id']);
     $student_id    = intval($_POST['student_id']);
     $class_id      = intval($_POST['class_id']);
-    $reason        = strtolower(trim($_POST['reason']));
-    $action        = $_POST['action_taken'];
+
+    $incident_type = trim($_POST['incident_type']);
+    $action_taken  = trim($_POST['action_taken']);
+    $status        = trim($_POST['status']);
     $description   = trim($_POST['description']);
-    $received_by   = $_SESSION['username'] ?? 'Admin';
 
- 
+    $reported_by = $_SESSION['username'] ?? 'Admin';
 
-    // Fetch tablet internal ID from assignment
-    $stmt = $pdo->prepare("SELECT tablet_id FROM tablet_assignments WHERE id = ?");
+    // Get tablet internal ID
+    $stmt = $pdo->prepare("
+        SELECT tablet_id
+        FROM tablet_assignments
+        WHERE id = ?
+    ");
+
     $stmt->execute([$assignment_id]);
     $assignment = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if (!$assignment) {
-        echo "<script>alert('Invalid Tablet Assignment ❌');</script>";
+        echo "<script>
+                alert('Invalid Tablet Assignment!');
+                window.history.back();
+              </script>";
         exit;
     }
 
     $tablet_auto_id = $assignment['tablet_id'];
 
     try {
+
         $pdo->beginTransaction();
 
-        // Insert return record (record only, no status update)
         $stmt = $pdo->prepare("
-            INSERT INTO tablet_returns
-            (tablet_id, student_id, class_id, reason, description, action_taken, received_by)
-            VALUES (?, ?, ?, ?, ?, ?, ?)
+            INSERT INTO tablet_reports
+            (
+                tablet_id,
+                student_id,
+                class_id,
+                incident_type,
+                action_taken,
+                status,
+                description,
+                reported_by
+            )
+            VALUES
+            (
+                ?,?,?,?,?,?,?,?
+            )
         ");
+
         $stmt->execute([
             $tablet_auto_id,
             $student_id,
             $class_id,
-            $reason,
+            $incident_type,
+            $action_taken,
+            $status,
             $description,
-            $action,
-            $received_by
+            $reported_by
         ]);
-
-        // ✅ Do NOT update tablet status
-        // ✅ Do NOT delete assignment
 
         $pdo->commit();
 
-        echo "<script>
-            alert('Tablet return recorded successfully ✅');
-            window.location.href = window.location.href;
-        </script>";
+        echo "
+        <script>
 
-    } catch (Exception $e) {
+            alert('Tablet report submitted successfully.');
+
+            window.location='reports.php';
+
+        </script>
+        ";
+
+    } catch(PDOException $e){
+
         $pdo->rollBack();
-        echo "<script>alert('Operation failed ❌');</script>";
+
+        echo "
+        <script>
+
+            alert('".$e->getMessage()."');
+
+            window.history.back();
+
+        </script>
+        ";
+
     }
+
 }
 ?>
