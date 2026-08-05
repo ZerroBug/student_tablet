@@ -362,10 +362,10 @@ foreach ($assignments as $a) {
                                     <th>Tablet ID</th>
                                     <th>Student</th>
                                     <th>Class</th>
-                                    <th>Incident Type</th>
-                                    <th>Action Taken</th>
+                                    <th>Incident</th>
+                                    <th>Action</th>
                                     <th>Status</th>
-                                    <th>Reported By</th>
+
                                     <th width="140">Actions</th>
                                 </tr>
                             </thead>
@@ -496,7 +496,7 @@ foreach ($assignments as $a) {
 
                                     </td>
 
-                                    <td><?= htmlspecialchars($row['received_by']); ?></td>
+
 
                                     <td class="text-center">
 
