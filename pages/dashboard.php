@@ -2,45 +2,137 @@
 include_once('../includes/auth_check.php');
 include_once('../includes/db_connection.php');
 
-/* ========================
-   GENERAL STATISTICS
-======================== */
+/* ==================================================
+   TABLET STATISTICS
+================================================== */
 
-// Total tablets
-$totalTablets = $pdo->query("SELECT COUNT(*) FROM tablet")->fetchColumn();
+// Total Tablets
+$totalTablets = $pdo->query("
+    SELECT COUNT(*)
+    FROM tablet
+")->fetchColumn();
 
-// Issued tablets (currently assigned)
-$issuedTablets = $pdo->query("SELECT COUNT(*) FROM tablet WHERE is_assigned = 1")->fetchColumn();
+// Issued Tablets
+$issuedTablets = $pdo->query("
+    SELECT COUNT(*)
+    FROM tablet
+    WHERE is_assigned = 1
+")->fetchColumn();
 
-// Available tablets
-$availableTablets = $pdo->query("SELECT COUNT(*) FROM tablet WHERE is_assigned = 0")->fetchColumn();
+// Available Tablets
+$availableTablets = $pdo->query("
+    SELECT COUNT(*)
+    FROM tablet
+    WHERE status = 'Available'
+")->fetchColumn();
 
-// Under repair
-$inRepair = $pdo->query("SELECT COUNT(*) FROM tablet WHERE status = 'Under Repair'")->fetchColumn();
+// Tablets Under Repair
+$inRepair = $pdo->query("
+    SELECT COUNT(*)
+    FROM tablet
+    WHERE status = 'Under Repair'
+")->fetchColumn();
 
-// Returned
-$returnedTablets = $pdo->query("SELECT COUNT(*) FROM tablet_returns WHERE action_taken = 'Returned'")->fetchColumn();
+// Seized Tablets
+$seizedTablets = $pdo->query("
+    SELECT COUNT(*)
+    FROM tablet
+    WHERE status = 'Seized'
+")->fetchColumn();
 
-// Seized
-$seizedTablets = $pdo->query("SELECT COUNT(*) FROM tablet WHERE status = 'Seized'")->fetchColumn();
-// ✅ Missing Tablets (NEW)
-$missingTablets = $pdo->query("SELECT COUNT(*) FROM tablet_returns WHERE action_taken = 'Missing'")->fetchColumn();
+/* ==================================================
+   TABLET REPORT STATISTICS
+================================================== */
 
-/* ========================
+// Total Reports
+$totalReports = $pdo->query("
+    SELECT COUNT(*)
+    FROM tablet_reports
+")->fetchColumn();
+
+// Missing Tablets
+$missingTablets = $pdo->query("
+    SELECT COUNT(*)
+    FROM tablet_reports
+    WHERE incident_type = 'Missing'
+")->fetchColumn();
+
+// Damaged Tablets
+$damagedTablets = $pdo->query("
+    SELECT COUNT(*)
+    FROM tablet_reports
+    WHERE incident_type = 'Damaged'
+")->fetchColumn();
+
+// Faulty Tablets
+$faultyTablets = $pdo->query("
+    SELECT COUNT(*)
+    FROM tablet_reports
+    WHERE incident_type = 'Faulty'
+")->fetchColumn();
+
+// Pending Reports
+$pendingReports = $pdo->query("
+    SELECT COUNT(*)
+    FROM tablet_reports
+    WHERE status = 'Pending'
+")->fetchColumn();
+
+// Under Investigation
+$underInvestigation = $pdo->query("
+    SELECT COUNT(*)
+    FROM tablet_reports
+    WHERE status = 'Under Investigation'
+")->fetchColumn();
+
+// Under Repair Reports
+$repairReports = $pdo->query("
+    SELECT COUNT(*)
+    FROM tablet_reports
+    WHERE status = 'Under Repair'
+")->fetchColumn();
+
+// Closed Reports
+$closedReports = $pdo->query("
+    SELECT COUNT(*)
+    FROM tablet_reports
+    WHERE status = 'Closed'
+")->fetchColumn();
+
+// Reports Submitted Today
+$todayReports = $pdo->query("
+    SELECT COUNT(*)
+    FROM tablet_reports
+    WHERE DATE(report_date) = CURDATE()
+")->fetchColumn();
+
+// Reports This Month
+$thisMonthReports = $pdo->query("
+    SELECT COUNT(*)
+    FROM tablet_reports
+    WHERE MONTH(report_date) = MONTH(CURDATE())
+      AND YEAR(report_date) = YEAR(CURDATE())
+")->fetchColumn();
+
+
+/* ==================================================
    STUDENTS ASSIGNED PER CLASS
-======================== */
+================================================== */
 
-// Count students who have at least one tablet assigned per class
 $classData = $pdo->query("
-    SELECT 
+    SELECT
         c.class_Name,
         COUNT(DISTINCT s.id) AS students_assigned
     FROM class c
-    LEFT JOIN students s ON s.class_id = c.id
-    LEFT JOIN tablet_assignments ta ON ta.student_id = s.id
-    LEFT JOIN tablet t ON t.id = ta.tablet_id AND t.is_assigned = 1
+    LEFT JOIN students s
+        ON s.class_id = c.id
+    LEFT JOIN tablet_assignments ta
+        ON ta.student_id = s.id
+    LEFT JOIN tablet t
+        ON t.id = ta.tablet_id
+       AND t.is_assigned = 1
     GROUP BY c.id
-    ORDER BY c.id ASC
+    ORDER BY c.class_Name
 ")->fetchAll(PDO::FETCH_ASSOC);
 
 $classLabels = [];
@@ -332,35 +424,87 @@ foreach ($classData as $row) {
                 </div>
             </div>
 
-            <!-- Missing Tablets -->
+            <!-- Missing -->
             <div class="col-xl-3 col-lg-4 col-md-6">
                 <div class="dashboard-card bg-purple-gradient">
                     <div class="icon">
                         <i class="fa-solid fa-triangle-exclamation"></i>
                     </div>
                     <div class="content">
-                        <h6>Missing Tablets</h6>
+                        <h6>Missing</h6>
                         <h3><?= $missingTablets; ?></h3>
                     </div>
                 </div>
             </div>
 
-            <!-- Seized Tablets -->
+            <!-- Damaged -->
+            <div class="col-xl-3 col-lg-4 col-md-6">
+                <div class="dashboard-card bg-warning-gradient">
+                    <div class="icon">
+                        <i class="fa-solid fa-tablet-button"></i>
+                    </div>
+                    <div class="content">
+                        <h6>Damaged</h6>
+                        <h3><?= $damagedTablets; ?></h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Faulty -->
+            <div class="col-xl-3 col-lg-4 col-md-6">
+                <div class="dashboard-card bg-secondary-gradient">
+                    <div class="icon">
+                        <i class="fa-solid fa-bug"></i>
+                    </div>
+                    <div class="content">
+                        <h6>Faulty</h6>
+                        <h3><?= $faultyTablets; ?></h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pending -->
+            <div class="col-xl-3 col-lg-4 col-md-6">
+                <div class="dashboard-card bg-warning-gradient">
+                    <div class="icon">
+                        <i class="fa-solid fa-hourglass-half"></i>
+                    </div>
+                    <div class="content">
+                        <h6>Pending</h6>
+                        <h3><?= $pendingReports; ?></h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Investigation -->
+            <div class="col-xl-3 col-lg-4 col-md-6">
+                <div class="dashboard-card bg-info-gradient">
+                    <div class="icon">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                    <div class="content">
+                        <h6>Investigation</h6>
+                        <h3><?= $underInvestigation; ?></h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Seized -->
             <div class="col-xl-3 col-lg-4 col-md-6">
                 <div class="dashboard-card bg-dark-gradient">
                     <div class="icon">
                         <i class="fa-solid fa-ban"></i>
                     </div>
                     <div class="content">
-                        <h6>Seized Tablets</h6>
+                        <h6>Seized</h6>
                         <h3><?= $seizedTablets; ?></h3>
                     </div>
                 </div>
             </div>
 
-            <!-- Closed Reports -->
+            <!-- Closed -->
             <div class="col-xl-3 col-lg-4 col-md-6">
-                <div class="dashboard-card bg-secondary-gradient">
+                <div class="dashboard-card bg-success-gradient">
                     <div class="icon">
                         <i class="fa-solid fa-circle-check"></i>
                     </div>
