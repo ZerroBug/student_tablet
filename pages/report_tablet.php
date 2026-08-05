@@ -272,7 +272,7 @@ foreach ($assignments as $a) {
                                     <option value="Battery Problem">Battery Problem</option>
                                     <option value="Charging Problem">Charging Problem</option>
                                     <option value="Password Reset">Password Reset</option>
-                                    <option value="Lost Accessories">Missing Powerbank</option>
+                                    <option value="Missing Powerbank">Missing Powerbank</option>
                                     <option value="Seized">Seized</option>
                                     <option value="Returned">Returned</option>
                                     <option value="Other">Other</option>
