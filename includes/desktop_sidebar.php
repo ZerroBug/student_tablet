@@ -19,9 +19,7 @@
                     Tablet</a></li>
             <li><a class="dropdown-item text-primary" href="assign_tablet.php"><i class="fa fa-user-plus me-2"></i>
                     Assign Tablet</a>
-            </li>
-            <!-- <li><a class="dropdown-item text-primary" href="return_tablet.php"><i class="fa fa-undo me-2"></i> Return -->
-            Tablet</a></li>
+
             <li><a class="dropdown-item text-primary" href="#"><i class="fa fa-tools me-2"></i> Maintenance</a></li>
         </ul>
     </div>
