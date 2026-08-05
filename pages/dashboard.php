@@ -283,31 +283,32 @@ foreach ($classData as $row) {
             </div>
 
             <div class="col-sm-6 col-lg-4">
-                <div class="card card-success card-stat">
-                    <i class="fa-solid fa-rotate-left fa-2x mb-2"></i>
+                <div class="card card-warning card-stat">
+                    <i class="fa-solid fa-triangle-exclamation fa-2x mb-2"></i>
                     <h6>Missing Tablets</h6>
                     <h4><?= htmlspecialchars($missingTablets) ?></h4>
                 </div>
             </div>
-            <div class="col-sm-6 col-lg-4">
-                <div class="card card-danger card-stat">
-                    <i class="fa-solid fa-ban fa-2x mb-2"></i>
-                    <h6>Seized Tablets</h6>
-                    <h4><?= htmlspecialchars($seizedTablets) ?></h4>
-                </div>
-            </div>
-
         </div>
-
-        <!-- Students Assigned Per Class Chart -->
-        <div class="row mt-4">
-            <div class="col-12">
-                <div class="chart-card p-4">
-                    <h6 class="mb-3">Students Assigned Tablets Per Class</h6>
-                    <canvas id="classChart"></canvas>
-                </div>
+        <div class="col-sm-6 col-lg-4">
+            <div class="card card-danger card-stat">
+                <i class="fa-solid fa-ban fa-2x mb-2"></i>
+                <h6>Seized Tablets</h6>
+                <h4><?= htmlspecialchars($seizedTablets) ?></h4>
             </div>
         </div>
+
+    </div>
+
+    <!-- Students Assigned Per Class Chart -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="chart-card p-4">
+                <h6 class="mb-3">Students Assigned Tablets Per Class</h6>
+                <canvas id="classChart"></canvas>
+            </div>
+        </div>
+    </div>
 
     </div>
 
