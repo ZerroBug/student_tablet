@@ -20,11 +20,7 @@ $issuedTablets = $pdo->query("
 ")->fetchColumn();
 
 // Available Tablets
-$availableTablets = $pdo->query("
-    SELECT COUNT(*)
-    FROM tablet
-    WHERE status = 'Available'
-")->fetchColumn();
+$availableTablets = $totalTablets - $issuedTablets;
 
 // Tablets Under Repair
 $inRepair = $pdo->query("
