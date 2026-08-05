@@ -68,10 +68,10 @@ $faultyTablets = $pdo->query("
 ")->fetchColumn();
 
 // Pending Reports
-$pendingReports = $pdo->query("
+$missingPowerbanks = $pdo->query("
     SELECT COUNT(*)
     FROM tablet_reports
-    WHERE status = 'Pending'
+     WHERE incident_type = 'Missing Powerbank'
 ")->fetchColumn();
 
 // Under Investigation
@@ -433,18 +433,7 @@ foreach ($classData as $row) {
                 </div>
             </div>
 
-            <!-- Damaged -->
-            <div class="col-xl-3 col-lg-4 col-md-6">
-                <div class="dashboard-card bg-warning-gradient">
-                    <div class="icon">
-                        <i class="fa-solid fa-tablet-button"></i>
-                    </div>
-                    <div class="content">
-                        <h6>Damaged</h6>
-                        <h3><?= $damagedTablets; ?></h3>
-                    </div>
-                </div>
-            </div>
+
 
             <!-- Faulty -->
             <div class="col-xl-3 col-lg-4 col-md-6">
@@ -466,50 +455,15 @@ foreach ($classData as $row) {
                         <i class="fa-solid fa-hourglass-half"></i>
                     </div>
                     <div class="content">
-                        <h6>Pending</h6>
-                        <h3><?= $pendingReports; ?></h3>
+                        <h6>Missing Powerbank</h6>
+                        <h3><?= $missingPowerbanks; ?></h3>
                     </div>
                 </div>
             </div>
 
-            <!-- Investigation -->
-            <div class="col-xl-3 col-lg-4 col-md-6">
-                <div class="dashboard-card bg-info-gradient">
-                    <div class="icon">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </div>
-                    <div class="content">
-                        <h6>Investigation</h6>
-                        <h3><?= $underInvestigation; ?></h3>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Seized -->
-            <div class="col-xl-3 col-lg-4 col-md-6">
-                <div class="dashboard-card bg-dark-gradient">
-                    <div class="icon">
-                        <i class="fa-solid fa-ban"></i>
-                    </div>
-                    <div class="content">
-                        <h6>Seized</h6>
-                        <h3><?= $seizedTablets; ?></h3>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Closed -->
-            <div class="col-xl-3 col-lg-4 col-md-6">
-                <div class="dashboard-card bg-success-gradient">
-                    <div class="icon">
-                        <i class="fa-solid fa-circle-check"></i>
-                    </div>
-                    <div class="content">
-                        <h6>Closed Reports</h6>
-                        <h3><?= $closedReports; ?></h3>
-                    </div>
-                </div>
-            </div>
+
 
         </div>
 
