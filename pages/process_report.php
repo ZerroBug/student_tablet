@@ -75,7 +75,7 @@ if (isset($_POST['submit_report'])) {
 
             alert('Tablet report submitted successfully.');
 
-            window.location='reports_tablet.php';
+            window.location='report_tablet.php';
 
         </script>
         ";
