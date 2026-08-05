@@ -69,7 +69,7 @@ foreach ($classData as $row) {
     /* ================= GLOBAL ================= */
     body {
         font-family: "Poppins", sans-serif;
-        background: linear-gradient(135deg, #eef2f7, #dde6f2);
+        background: #f4f7fb;
         overflow-x: hidden;
     }
 
@@ -83,146 +83,152 @@ foreach ($classData as $row) {
         background: linear-gradient(180deg, #1d3557, #243b55);
         padding-top: 1rem;
         z-index: 1040;
-        box-shadow: 4px 0 15px rgba(0, 0, 0, 0.15);
+        box-shadow: 4px 0 15px rgba(0, 0, 0, .15);
     }
 
     .sidebar h4 {
+        color: #fff;
         font-size: 1.4rem;
         font-weight: 600;
-        color: #fff;
         padding-left: 20px;
-        letter-spacing: 0.5px;
     }
 
     .sidebar a {
         color: #fff;
-        text-decoration: none;
         display: block;
+        text-decoration: none;
         padding: 12px 20px;
         margin: 6px 10px;
         border-radius: 10px;
-        font-size: 0.95rem;
-        transition: all 0.3s ease;
+        transition: .3s;
     }
 
-    .sidebar a.active,
-    .sidebar a:hover {
-        background: rgba(255, 255, 255, 0.15);
-        backdrop-filter: blur(6px);
+    .sidebar a:hover,
+    .sidebar a.active {
+        background: rgba(255, 255, 255, .15);
         transform: translateX(5px);
     }
 
     /* ================= MAIN CONTENT ================= */
+
     .main-content {
         margin-left: 230px;
-        padding: 30px;
-        transition: margin-left 0.3s ease;
+        padding: 25px;
+        transition: .3s;
     }
 
-    /* ================= CARDS ================= */
-    .card {
-        border-radius: 18px;
-        transition: all 0.35s ease;
-        color: #fff;
-        min-height: 140px;
+    /* ================= DASHBOARD CARDS ================= */
+
+    .dashboard-card {
+        border: none;
+        border-radius: 14px;
+        height: 90px;
+        padding: 18px;
         display: flex;
-        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, .08);
+        transition: .25s;
+        color: #fff;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .dashboard-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 22px rgba(0, 0, 0, .15);
+    }
+
+    .dashboard-card .icon {
+        width: 52px;
+        height: 52px;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, .18);
+        display: flex;
         justify-content: center;
         align-items: center;
-        margin: 15px;
-        position: relative;
-        overflow: hidden;
+        font-size: 22px;
     }
 
-    /* Shine effect */
-    .card::before {
-        content: "";
-        position: absolute;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200%;
-        background: linear-gradient(120deg,
-                rgba(255, 255, 255, 0.15) 0%,
-                rgba(255, 255, 255, 0.05) 40%,
-                rgba(255, 255, 255, 0.15) 60%);
-        transform: rotate(25deg);
+    .dashboard-card .content {
+        text-align: right;
     }
 
-    /* Hover effect */
-    .card:hover {
-        transform: translateY(-6px) scale(1.02);
-        box-shadow: 0 20px 35px rgba(0, 0, 0, 0.18);
+    .dashboard-card .content h6 {
+        margin: 0;
+        font-size: 13px;
+        font-weight: 500;
+        opacity: .9;
+    }
+
+    .dashboard-card .content h3 {
+        margin-top: 4px;
+        font-size: 25px;
+        font-weight: 700;
     }
 
     /* ================= CARD COLORS ================= */
-    .card-primary {
-        background: linear-gradient(135deg, #667eea, #764ba2);
+
+    .bg-primary-gradient {
+        background: linear-gradient(135deg, #2563eb, #1d4ed8);
     }
 
-    .card-success {
-        background: linear-gradient(135deg, #11998e, #38ef7d);
+    .bg-success-gradient {
+        background: linear-gradient(135deg, #10b981, #059669);
     }
 
-    .card-warning {
-        background: linear-gradient(135deg, #f7971e, #ffcc33);
+    .bg-warning-gradient {
+        background: linear-gradient(135deg, #f59e0b, #d97706);
     }
 
-    .card-danger {
-        background: linear-gradient(135deg, #ff416c, #ff4b2b);
+    .bg-danger-gradient {
+        background: linear-gradient(135deg, #ef4444, #dc2626);
     }
 
-    .card-secondary {
-        background: linear-gradient(135deg, #757f9a, #d7dde8);
-        color: #2c3e50;
+    .bg-purple-gradient {
+        background: linear-gradient(135deg, #7c3aed, #6d28d9);
     }
 
-    /* ================= CARD TEXT ================= */
-    .card-stat h6 {
-        font-size: 0.95rem;
-        margin-bottom: 6px;
-        opacity: 0.9;
+    .bg-dark-gradient {
+        background: linear-gradient(135deg, #374151, #111827);
     }
 
-    .card-stat h4 {
-        font-size: 1.6rem;
-        font-weight: 600;
+    .bg-info-gradient {
+        background: linear-gradient(135deg, #06b6d4, #0891b2);
     }
 
-    /* ================= ICON STYLE ================= */
-    .card-stat .fa-2x {
-        margin-bottom: 12px;
-        padding: 16px;
-        font-size: 26px;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.25);
-        backdrop-filter: blur(4px);
+    .bg-secondary-gradient {
+        background: linear-gradient(135deg, #64748b, #475569);
     }
 
-    /* ================= CHART CARD ================= */
+    /* ================= CHART ================= */
+
     .chart-card {
         background: #fff;
-        border-radius: 18px;
+        border: none;
+        border-radius: 14px;
         padding: 25px;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, .08);
     }
 
     /* ================= FOOTER ================= */
+
     .footer {
         position: fixed;
         bottom: 0;
         left: 230px;
         width: calc(100% - 230px);
-        background: linear-gradient(90deg, #1d3557, #243b55);
+        background: #1d3557;
         color: #fff;
         text-align: center;
-        padding: 10px 0;
-        font-size: 0.85rem;
-        box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.15);
+        padding: 10px;
+        font-size: .85rem;
     }
 
     /* ================= RESPONSIVE ================= */
-    @media (max-width: 768px) {
+
+    @media(max-width:768px) {
+
         .main-content {
             margin-left: 0;
             padding: 20px;
@@ -233,8 +239,19 @@ foreach ($classData as $row) {
             width: 100%;
         }
 
-        .sidebar {
-            width: 200px;
+        .dashboard-card {
+            height: 80px;
+            padding: 15px;
+        }
+
+        .dashboard-card .icon {
+            width: 46px;
+            height: 46px;
+            font-size: 20px;
+        }
+
+        .dashboard-card .content h3 {
+            font-size: 22px;
         }
     }
     </style>
@@ -248,52 +265,109 @@ foreach ($classData as $row) {
 
     <div class="main-content">
 
-        <div class="row">
+        <div class="row g-3 mb-4">
 
-            <div class="col-sm-6 col-lg-4">
-                <div class="card card-primary card-stat">
-                    <i class="fa-solid fa-tablet-screen-button fa-2x mb-2"></i>
-                    <h6>Total Tablets</h6>
-                    <h4><?= htmlspecialchars($totalTablets) ?></h4>
+            <!-- Total Tablets -->
+            <div class="col-xl-3 col-lg-4 col-md-6">
+                <div class="dashboard-card bg-primary-gradient">
+                    <div class="icon">
+                        <i class="fa-solid fa-tablet-screen-button"></i>
+                    </div>
+                    <div class="content">
+                        <h6>Total Tablets</h6>
+                        <h3><?= $totalTablets; ?></h3>
+                    </div>
                 </div>
             </div>
 
-            <div class="col-sm-6 col-lg-4">
-                <div class="card card-success card-stat">
-                    <i class="fa-solid fa-check fa-2x mb-2"></i>
-                    <h6>Issued Tablets</h6>
-                    <h4><?= htmlspecialchars($issuedTablets) ?></h4>
+            <!-- Issued Tablets -->
+            <div class="col-xl-3 col-lg-4 col-md-6">
+                <div class="dashboard-card bg-success-gradient">
+                    <div class="icon">
+                        <i class="fa-solid fa-user-check"></i>
+                    </div>
+                    <div class="content">
+                        <h6>Issued Tablets</h6>
+                        <h3><?= $issuedTablets; ?></h3>
+                    </div>
                 </div>
             </div>
 
-            <div class="col-sm-6 col-lg-4">
-                <div class="card card-warning card-stat">
-                    <i class="fa-solid fa-box-open fa-2x mb-2"></i>
-                    <h6>Available</h6>
-                    <h4><?= htmlspecialchars($availableTablets) ?></h4>
+            <!-- Available Tablets -->
+            <div class="col-xl-3 col-lg-4 col-md-6">
+                <div class="dashboard-card bg-warning-gradient">
+                    <div class="icon">
+                        <i class="fa-solid fa-box-open"></i>
+                    </div>
+                    <div class="content">
+                        <h6>Available</h6>
+                        <h3><?= $availableTablets; ?></h3>
+                    </div>
                 </div>
             </div>
 
-            <div class="col-sm-6 col-lg-4">
-                <div class="card card-danger card-stat">
-                    <i class="fa-solid fa-tools fa-2x mb-2"></i>
-                    <h6>In Repair</h6>
-                    <h4><?= htmlspecialchars($inRepair) ?></h4>
+            <!-- Under Repair -->
+            <div class="col-xl-3 col-lg-4 col-md-6">
+                <div class="dashboard-card bg-danger-gradient">
+                    <div class="icon">
+                        <i class="fa-solid fa-screwdriver-wrench"></i>
+                    </div>
+                    <div class="content">
+                        <h6>Under Repair</h6>
+                        <h3><?= $inRepair; ?></h3>
+                    </div>
                 </div>
             </div>
 
-            <div class="col-sm-6 col-lg-4">
-                <div class="card card-success card-stat">
-                    <i class="fa-solid fa-rotate-left fa-2x mb-2"></i>
-                    <h6>Reports</h6>
-                    <h4><?= htmlspecialchars($missingTablets) ?></h4>
+            <!-- Total Reports -->
+            <div class="col-xl-3 col-lg-4 col-md-6">
+                <div class="dashboard-card bg-info-gradient">
+                    <div class="icon">
+                        <i class="fa-solid fa-file-circle-exclamation"></i>
+                    </div>
+                    <div class="content">
+                        <h6>Total Reports</h6>
+                        <h3><?= $totalReports; ?></h3>
+                    </div>
                 </div>
             </div>
-            <div class="col-sm-6 col-lg-4">
-                <div class="card card-danger card-stat">
-                    <i class="fa-solid fa-ban fa-2x mb-2"></i>
-                    <h6>Seized Tablets</h6>
-                    <h4><?= htmlspecialchars($seizedTablets) ?></h4>
+
+            <!-- Missing Tablets -->
+            <div class="col-xl-3 col-lg-4 col-md-6">
+                <div class="dashboard-card bg-purple-gradient">
+                    <div class="icon">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                    </div>
+                    <div class="content">
+                        <h6>Missing Tablets</h6>
+                        <h3><?= $missingTablets; ?></h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Seized Tablets -->
+            <div class="col-xl-3 col-lg-4 col-md-6">
+                <div class="dashboard-card bg-dark-gradient">
+                    <div class="icon">
+                        <i class="fa-solid fa-ban"></i>
+                    </div>
+                    <div class="content">
+                        <h6>Seized Tablets</h6>
+                        <h3><?= $seizedTablets; ?></h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Closed Reports -->
+            <div class="col-xl-3 col-lg-4 col-md-6">
+                <div class="dashboard-card bg-secondary-gradient">
+                    <div class="icon">
+                        <i class="fa-solid fa-circle-check"></i>
+                    </div>
+                    <div class="content">
+                        <h6>Closed Reports</h6>
+                        <h3><?= $closedReports; ?></h3>
+                    </div>
                 </div>
             </div>
 
