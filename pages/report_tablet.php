@@ -222,7 +222,7 @@ foreach ($assignments as $a) {
                         </h5>
                     </div>
 
-                    <form method="POST" action="process_return.php" autocomplete="off">
+                    <form method="POST" action="process_report.php" autocomplete="off">
 
                         <div class="row g-3">
 
