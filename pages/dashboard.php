@@ -480,7 +480,7 @@ foreach ($classData as $row) {
     </div>
 
     <footer class="footer">
-        &copy; 2026 Senior High School Tablet Management System
+        &copy; 2026 OASHS. All rights reserved.
     </footer>
 
     <script>
